@@ -37,15 +37,5 @@ create table if not exists tb_credencial (
   constraint un_credencial unique (descricao, usuario, senha)
 );
 
-/*
-insert into tb_credencial (id_pessoa, descricao, usuario, senha, link) values (
-  (select code from tb_pessoa where nome = 'Microsoft'),
-  'Conta Microsoft',
-  'jose.quintinno@outlook.com.br',
-  '$2a$12$h9keqE2l9aLkHyi5pzcGp.mol8Pgj120ULWSrAJR97ev2.YJNDXha',
-  ''
-);
-*/
-
 -- select * from tb_pessoa;
 -- select * from tb_credencial;
