@@ -30,5 +30,5 @@ create table if not exists tb_credencial (
   constraint un_credencial unique (descricao, usuario, senha)
 );
 
--- select * from tb_pessoa;
+-- select * from tb_plataforma;
 -- select * from tb_credencial;
