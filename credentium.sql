@@ -37,7 +37,7 @@ create table if not exists tb_base_dados (
   nome varchar(255) not null,
   senha varchar(255) not null,
   host varchar(255) not null,
-  porta varchar(255) null,
+  porta varchar(255) not null,
   url varchar(255) null,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now(),
