@@ -1,19 +1,19 @@
 drop table if exists tb_plataforma cascade;
 drop table if exists tb_credencial cascade;
 drop table if exists tb_base_dados cascade;
+drop table if exists tb_plataforma cascade;
+drop table if exists tb_autenticacao_federada cascade;
 
 create table if not exists tb_plataforma (
   code serial not null,
   nome varchar(255) not null,
+  url varchar(255) null,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now(),
   deleted_at timestamp null,
   active boolean not null default true,
   constraint pk_plataforma primary key (code)
 );
-
-insert into tb_plataforma (nome) values ('Microsoft');
-insert into tb_plataforma (nome) values ('Google');
 
 create table if not exists tb_credencial (
   code serial not null,
@@ -46,6 +46,35 @@ create table if not exists tb_base_dados (
   constraint pk_base_dados primary key (code),
   constraint un_base_dados unique (descricao, nome, host)
 );
+
+create table if not exists tb_autenticacao_federada (
+  code serial not null,
+  descricao varchar(255) not null,
+  created_at timestamp not null default now(),
+  updated_at timestamp not null default now(),
+  deleted_at timestamp null,
+  active boolean not null default true,
+  constraint pk_autenticacao_federada primary key (code),
+  constraint un_autenticacao_federada unique (descricao)
+);
+
+create table if not exists tb_plataforma_autenticacao_federada (
+  code serial not null,
+  id_plataforma integer not null,
+  id_autenticacao_federada integer not null,
+  created_at timestamp not null default now(),
+  updated_at timestamp not null default now(),
+  deleted_at timestamp null,
+  active boolean not null default true,
+  constraint pk_plataforma_autenticacao_federada primary key (code),
+  constraint fk_plataforma_autenticacao_federada_1 foreign key (id_plataforma) references tb_plataforma (code),
+  constraint fk_plataforma_autenticacao_federada_2 foreign key (id_autenticacao_federada) references tb_autenticacao_federada (code)
+);
+
+insert into tb_plataforma (nome) values ('Microsoft');
+insert into tb_plataforma (nome) values ('Google');
+insert into tb_plataforma (nome, url) values ('GitHub', 'https://github.com/');
+insert into tb_plataforma (nome, url) values ('Supabase', 'https://supabase.com/');
 
 -- select * from tb_plataforma;
 -- select * from tb_credencial;
