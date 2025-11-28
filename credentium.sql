@@ -17,7 +17,7 @@ insert into tb_plataforma (nome) values ('Google');
 
 create table if not exists tb_credencial (
   code serial not null,
-  id_plataforma serial not null,
+  id_plataforma integer not null,
   descricao varchar(255) not null,
   usuario varchar(255) not null,
   senha varchar(255) not null,
