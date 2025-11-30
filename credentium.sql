@@ -75,16 +75,16 @@ insert into tb_credencial (id_plataforma, id_autenticacao_federada, descricao, u
 	(select code from tb_plataforma where nome = 'Github'),
 	null,
 	'Conta GitHub',
-	'jose.quintinno@outlook.com.br', 
-	'$2a$12$h9keqE2l9aLkHyi5pzcGp.mol8Pgj120ULWSrAJR97ev2.YJNDXha', 
+	'usuario@email.com', 
+	'TESYJNDXhaTE', 
 	'https://github.com/login'
 );
 
-insert into tb_autenticacao_federada (descricao) values ('Github (jose.quintinno@outlook.com.br)');
+insert into tb_autenticacao_federada (descricao) values ('Github (usuario@email.com)');
 
 insert into tb_credencial (id_plataforma, id_autenticacao_federada, descricao, usuario, senha, link) values (
 	(select code from tb_plataforma where nome = 'Supabase'),
-	(select code from tb_autenticacao_federada where descricao = 'Github (jose.quintinno@outlook.com.br)'),
+	(select code from tb_autenticacao_federada where descricao = 'Github (usuario@email.com)'),
 	'Conta Supabase', null, null, null
 );
 
