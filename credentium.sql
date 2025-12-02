@@ -8,6 +8,7 @@ create table if not exists tb_plataforma (
   code serial not null,
   nome varchar(255) not null,
   url varchar(255) null,
+  logomarca bytea null,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now(),
   deleted_at timestamp null,
