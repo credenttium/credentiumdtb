@@ -10,9 +10,9 @@ drop table if exists databasechangelog;
 drop table if exists databasechangeloglock;
 drop table if exists tb_credencial;
 drop table if exists tb_plataforma;
+drop table if exists tb_usuario_perfil;
 drop table if exists tb_usuario;
 drop table if exists tb_perfil;
-drop table if exists tb_usuario_perfil;
 
 create table if not exists tb_plataforma (
   code int not null auto_increment,
@@ -57,14 +57,15 @@ create table if not exists tb_usuario (
 
 create table if not exists tb_perfil (
   code int not null auto_increment,
+  nome varchar(255) not null,
   descricao varchar(255) not null,
-  sigla varchar(255) not null,
+  sigla varchar(5) null,
   created_at timestamp not null default current_timestamp,
   updated_at timestamp not null default current_timestamp on update current_timestamp,
   deleted_at timestamp null,
   active boolean not null default true,
   constraint pk_perfil primary key (code),
-  constraint un_perfil unique key un_perfil (descricao, sigla)
+  constraint un_perfil unique key un_perfil (nome, sigla)
 );
 
 create table if not exists tb_usuario_perfil (
@@ -80,3 +81,7 @@ create table if not exists tb_usuario_perfil (
   constraint fk_usuario_perfil_2 foreign key (id_perfil) references tb_perfil (code),
   constraint un_usuario_perfil unique key un_perfil (id_usuario, id_perfil)
 );
+
+insert into tb_perfil (nome, sigla, descricao) values ('Administração', 'ADM', 'Responsável por administrar outros usuários do sistema (incluirm excluir, atualizar responsabilidades)');
+insert into tb_perfil (nome, sigla, descricao) values ('Desenvolvimento', 'DEV', 'Responsável por acessar a plataforma com perfil de desenvolvedor quando houver necessidade de verificar o comportamento de funcionalidades');
+insert into tb_perfil (nome, sigla, descricao) values ('Homologação', 'HOM', 'Responsável por acessar a plataforma com perfil de homologador quando houver necessidade de verificar o comportamento de funcionalidades');
