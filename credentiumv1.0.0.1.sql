@@ -1,3 +1,5 @@
+# POSTGRESQL
+
 drop table if exists databasechangelog cascade;
 drop table if exists databasechangeloglock cascade;
 drop table if exists tb_credencial cascade;
